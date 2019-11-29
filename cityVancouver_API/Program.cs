@@ -9,7 +9,7 @@ using System.Data;
 namespace cityVancouver_API
 {
     class Program
-    {  
+    {
         static void Main(string[] args)
         {
             const string protocol = "https";
@@ -25,7 +25,17 @@ namespace cityVancouver_API
 
             foreach (Record cart in rootObject.records)
             {
-                db.Add(new FoodCart());
+                db.Add(new FoodCart {
+                 key = cart.fields.key,
+                status = cart.fields.status,
+                description = cart.fields.description,
+                geo_localarea = cart.fields.geo_localarea,
+                longitude = cart.fields.geom.coordinates[0],
+                latitude = cart.fields.geom.coordinates[1],
+                location = cart.fields.location,
+                vendor_type = cart.fields.vendor_type,
+                business_name = cart.fields.business_name
+                });
             }
         }
 
@@ -38,7 +48,7 @@ namespace cityVancouver_API
             StreamReader responseStream = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
             // Read the response and write it to the console
             // Close the connection to the api and the stream reader
-            string stringResponce =  responseStream.ReadToEnd();
+            string stringResponce = responseStream.ReadToEnd();
             response.Close();
             responseStream.Close();
             return stringResponce;
