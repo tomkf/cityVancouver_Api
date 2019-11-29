@@ -10,7 +10,6 @@ namespace cityVancouver_API
 {
     class Program
     {  
-
         static void Main(string[] args)
         {
             const string protocol = "https";
