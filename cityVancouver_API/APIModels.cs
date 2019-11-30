@@ -5,22 +5,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace cityVancouver_API
 {
     public class FoodCartContext : DbContext
     {
-        //will need connection string 
-
         String connectionString = "Server=.;Database=cityOfVacouverApi;Trusted_Connection=True;";
 
         public DbSet<FoodCart> Root { get; set; }
 
         // this sets up connection string 
         // add migration initial create 
-
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(connectionString);

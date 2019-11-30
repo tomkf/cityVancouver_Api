@@ -5,6 +5,12 @@ using System.Net;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace cityVancouver_API
 {
@@ -37,6 +43,7 @@ namespace cityVancouver_API
                 business_name = cart.fields.business_name
                 });
             }
+            db.SaveChanges();
         }
 
         static string CallRestMethod(Uri uri)
@@ -53,7 +60,6 @@ namespace cityVancouver_API
             responseStream.Close();
             return stringResponce;
         }
-
 
         static class SqlHelper
         {
